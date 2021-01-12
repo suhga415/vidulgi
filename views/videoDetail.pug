@@ -1,0 +1,58 @@
+extends layouts/main
+include mixins/videoPlayer
+
+block content
+    .video-detail__container
+        +videoPlayer({
+            fileUrl: video.fileUrl
+        })
+        .video__info
+            .video__info-row
+                h5.video__title=video.title
+                if loggedUser && loggedUser.id === video.creator.id
+                    a.edit-video__btn(href=routes.editVideo(video.id)) 
+                        button Edit video
+            if video.views === 1
+                span.video__views 1 view
+            else
+                span.video__views #{video.views} views 
+            span.dot • 
+            span.video__uploaded-date #{moment(video.createdAt).format('YYYY. MM. DD.')}
+            hr
+            .video__creator
+                img.u-avatar__small(src=`/${video.creator.avatarUrl}`)
+                a(href=routes.userDetail(video.creator._id))=video.creator.name
+            p.video__description=video.description
+            hr
+        .video__comments
+            if video.comments.length === 1
+                span.video__comments-number#jsCommentNumber 1 comment 
+            else
+                span.video__comments-number#jsCommentNumber #{video.comments.length} comments
+            .comments-form-container
+                if loggedUser
+                    form.comments-form#jsAddComment
+                        //- This form doesn't have: (action="routes sometvhing", method="post")
+                        img.u-avatar__medium#jsUserAvatarUrl(src=`/${loggedUser.avatarUrl}`)
+                        //- span.span__invisible#jsUserAvatarUrl=`${loggedUser.avatarUrl}`
+                        input.comments-form__input#jsComment(type="text", placeholder="Add a comment", name="comment", autocomplete="off")
+                        input.comments-form__submit(type="submit", value="Submit")
+                        span.span__invisible#jsUsername=`${loggedUser.name}`
+                else
+                    span.pls-login 로그인을 하여 댓글을 달아보세요!
+            ul.comments-list#jsCommentsList
+                each item in video.comments.reverse()
+                    li
+                        .speech-bubble
+                            img.u-avatar__small(src=`/${item.creatorAvatarUrl}`)
+                            .speech-bubble__column
+                                .speech-bubble__row
+                                    a(href=routes.userDetail(item.creatorId))=item.creator
+                                    span.dot • 
+                                    span.comment__date #{moment(item.createdAt).format('YYYY. MM. DD.')}
+                                    if loggedUser && loggedUser.id == item.creatorId._id
+                                        //- input#jsCommentId(type="hidden" value=`${item.id}`)
+                                        //- span.span__invisible#jsCommentId=`${item.id}`
+                                        button.comment__delBtn#jsDeleteCommentBtn(value=`${item.id}`) Delete
+                                span.comment__text=`${item.text}`
+                        

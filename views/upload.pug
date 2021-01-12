@@ -1,0 +1,18 @@
+extends layouts/main
+
+block content
+    .form-container
+        .recorder-container#jsVideoRecorder
+            video#jsVideoPreview
+            button#jsRecordBtn Record Video!
+            //- button#jsdownloadBtn Download
+        form(action=`/videos${routes.upload}`, method="post", enctype="multipart/form-data")
+            div.fileUpload
+                label(for="video") Video
+                input(type="file", id="video", name="videoFile", required=true, accept="video/*")
+            input(type="text", placeholder="Title", name="title", required=true)
+            textarea(placeholder="Description",name="description", required=true)
+            div.fileUpload
+                label(for="thumbnail") Thumbnail: 미리보기 이미지 (선택하지 않을 시, 첫 프레임)
+                input(type="file", id="thumbnail", name="thumbnailFile", accept="image/*")
+            input(type="submit", value="Upload")

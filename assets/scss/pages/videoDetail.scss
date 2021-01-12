@@ -1,0 +1,144 @@
+.video-detail__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .video__info {
+        width: 100%;
+        max-width: 1000px;
+        margin-top: 30px;
+        a {
+            font-weight: 500;
+            button {
+                width: 100px;
+                margin-bottom: 20px;
+            }    
+        }
+        .video__creator {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin: 15px 0;
+            a {
+                margin-left: 10px;
+                color: $red;
+                display: inline-block;
+                align-self: center;
+            }
+        }
+        .video__info-row {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .video__title {
+                margin-bottom: 15px;
+                font-size: 25px;
+                font-weight: 300;
+                color: $light-grey;
+            }
+            .edit-video__btn {
+                justify-self: flex-end;
+            }
+        }        
+        .video__views {
+            display: inline-block;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        .video__description {
+            display: block;
+            margin-top: 20px;
+            margin-bottom: 25px;
+            font-size: 16px;
+            padding-left: 45px;
+        }
+    }
+    .video__comments {
+        width: 100%;
+        max-width: 1000px;
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        .video__comments-number {
+            font-size: 15px;
+            color: $red;
+            margin-bottom: 25px;
+        }
+        // .comments-form-container {
+        //     .span__invisible {
+        //         display: none;
+        //     }
+        // }
+        .comments-form {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            .comments-form__input {
+                width: 800px;
+                height: 45px;
+                background-color: $dark-grey;
+                color: $light-grey;
+                font-size: 16px;
+                font-weight: 300;
+            }
+            .comments-form__input::placeholder {
+                color: grey;
+            }
+            .comments-form__submit {
+                width: 100px;
+                height: 45px;
+                background-color: $button-color;
+                color: $light-grey;
+                cursor: pointer;
+                font-size: 16px;
+            }
+        }
+        .comments-list {
+            margin-top: 50px;
+            .speech-bubble {
+                display: flex;
+                background-color: $comment_bg;
+                color: $text-color;
+                font-weight: 300;
+                font-size: 15px;
+                padding: 15px;
+                border-radius: 20px;
+                border-bottom-left-radius: 0px;
+                margin-bottom: 15px;
+
+                &:not(:last-child) {
+                    margin-bottom: 15px;
+                }
+                .speech-bubble__column {
+                    display: flex;
+                    flex-direction: column;
+                    padding-left: 10px;
+                    .speech-bubble__row {
+                        display: flex;
+                        align-items: ceneter;
+                        a {
+                            margin-bottom: 10px;
+                        }
+                        .comment__delBtn {
+                            width: 80px;
+                            height: 20px;
+                            margin-left: 20px;
+                            padding: 0;
+                            background-color: black;
+                            color: $light-grey;
+                        }
+                    }
+                    .comment__text {
+                        line-height: 1.5em;
+                    }
+                }
+            }
+            
+        }
+    }
+    .span__invisible {
+        display: none;
+    }
+}
+

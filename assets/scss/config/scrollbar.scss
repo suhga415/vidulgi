@@ -1,0 +1,19 @@
+// body {background: #333; height: 1500px;}
+html {
+  scrollbar-face-color: #434a50;
+  scrollbar-base-color: #434a50;
+  scrollbar-3dlight-color: #434a50;
+  scrollbar-highlight-color: #434a50;
+  scrollbar-track-color: #000;
+  scrollbar-arrow-color: #000;
+  scrollbar-shadow-color: #434a50;
+//   scrollbar-dark-shadow-color: #344d64;
+}
+
+::-webkit-scrollbar { width: 8px; height: 3px;}
+::-webkit-scrollbar-button {  background-color: #434a50; }
+::-webkit-scrollbar-track {  background-color: #434a50;}
+::-webkit-scrollbar-track-piece { background-color: #000;}
+::-webkit-scrollbar-thumb { height: 50px; background-color: #434a50; border-radius: 3px;}
+::-webkit-scrollbar-corner { background-color: #434a50;}
+::-webkit-resizer { background-color: #434a50;}

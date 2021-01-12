@@ -1,0 +1,14 @@
+.search__header {
+    font-size: 16px;
+    margin-bottom: 30px;
+    .search-term {
+        font-size: 20px;
+        font-weight: 600;
+    }
+}
+
+.search-videos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); // auto-fit, minmax(50px, 1fr)
+    grid-gap: 15px;
+}

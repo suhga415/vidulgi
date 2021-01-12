@@ -1,0 +1,65 @@
+html, 
+body {
+    height: 100%; 
+}
+body {
+    background-color: $black;
+    color: $text-color;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 14px;
+}
+
+main {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    min-height: 70vh;
+}
+input:not([type="file"]),
+button,
+textarea,
+.fileUpload {
+    width: 100%;
+    // max-width: 320px;
+    font-size: 14px;
+    font-weight: 700;
+    color: $black;
+    border-radius: 5px;
+    padding: 7px 10px;
+    resize: none;
+    &::placeholder {
+        font-weight: 300;
+        color: rgba(0,0,0,0.5);
+    }
+}
+button {
+    border: none;
+    background-color: $button-color;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+button.delete {
+    background-color: black;
+}
+
+a {
+    color: $light-grey;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+    color: $red;
+}
+
+hr {
+    width: 100%;
+    border: none;
+    height: 1px;
+    color: $hr-color;
+    background-color: $hr-color;
+}

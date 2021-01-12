@@ -1,0 +1,27 @@
+.u-avatar {
+    height: 100px;
+    width: 100px;
+    background-color: white;
+    border-radius: 50%;
+}
+
+.u-avatar__small {
+    // object-fit: cover;
+    width: 35px;
+    height: 35px;
+    background-color: white;
+    border-radius: 50%;
+}
+
+.u-avatar__medium {
+    // object-fit: cover;
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    border-radius: 50%;
+}
+
+.dot {
+    color: $button-color;
+    margin: 0 5px;
+}

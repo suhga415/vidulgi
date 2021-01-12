@@ -1,0 +1,17 @@
+mixin videoBlockUser(video = {})
+    .videoBlockUser
+        a.videoBlock__a(href=routes.videoDetail(video.id))
+            if (video.thumbnailUrl)
+                img.videoBlockUser__thumbnail(src=`/${video.thumbnailUrl}`)
+            else
+                video.videoBlockUser__thumbnail(src=`/${video.fileUrl}`)
+            .videoBlockUser__info-wrapper
+                .videoBlock__row
+                    h4.videoBlock__title=video.title
+                .videoBlock__row
+                    if video.views === 1
+                        span.videoBlockUser__views 1 view
+                    else 
+                        span.videoBlockUser__views #{video.views} views
+                    span.dot •
+                    span.videoBlockUser__date #{moment(video.createdAt).format('YYYY. MM. DD.')}

@@ -1,0 +1,33 @@
+mixin videoBlock(video = {})
+    .videoBlock
+        a.videoBlock__a(href=routes.videoDetail(video.id))
+            if (video.thumbnailUrl)
+                img.videoBlock__thumbnail(src=`/${video.thumbnailUrl}`)
+            else
+                video.videoBlock__thumbnail(src=`/${video.fileUrl}`)
+            .videoBlock__info-wrapper
+                .videoBlock__column
+                    img.u-avatar__small(src=`/${video.avatarUrl}`)
+                .videoBlock__column
+                    .videoBlock__row
+                        if (video.title.length > 70)
+                            h4.videoBlock__title #{video.title.substring(0, 70)} ...
+                        else 
+                            h4.videoBlock__title=video.title
+                    .videoBlock__row
+                        h6.videoBlock__creator=video.creator
+                    .videoBlock__row
+                        if video.views === 1
+                            span.videoBlock__views 1 view
+                        else 
+                            span.videoBlock__views #{video.views} views
+                        span.dot •
+                        span.videoBlock__date #{moment(video.createdAt).format('YYYY. MM. DD.')}
+
+
+                    //- h4.videoBlock__title=video.title
+                    //- h6.videoBlock__creator=video.creator
+                    //- if video.views === 1
+                    //-     h6.videoBlock__views 1 view
+                    //- else 
+                    //-     h6.videoBlock__views #{video.views} views

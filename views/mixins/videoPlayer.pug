@@ -1,0 +1,21 @@
+mixin videoPlayer(video={})
+    .videoPlayer#jsVideoPlayer
+        video#jsVideo(src=`/${video.fileUrl}`)
+        .videoPlayer__controls
+            .videoPlayer__row
+                input.progress-slider#jsProgressSlider(type="range",value="0",min="0",max="500",step="1")
+            .videoPlayer__row
+                .videoPlayer__column
+                    span#jsVolumeBtn
+                        i.fas.fa-volume-up#jsVolumeIcon
+                    span
+                        span#jsCurrentTime 00:00:00
+                        span /
+                        span#jsDurationTime 00:00:00
+                    input.volume-slider#jsVolumeSlider(type="range",value="100",min="0",max="100",step="1")
+                .videoPlayer__column
+                    span#jsPlayBtn
+                        i.fas.fa-play
+                .videoPlayer__column
+                    span#jsExpandBtn
+                        i.fas.fa-expand

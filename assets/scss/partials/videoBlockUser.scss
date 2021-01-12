@@ -1,0 +1,26 @@
+.videoBlockUser {
+    .videoBlockUser__thumbnail {
+        object-fit: cover;
+        width: 100%;
+        height: 180px;
+        // max-width: 100%;
+        margin-bottom: 10px;
+        border-radius: 35px;
+    }
+    .videoBlockUser__info-wrapper {
+        display: flex;
+        flex-direction: column;
+        .videoBlock__row {
+            display: flex;
+            .videoBlockUser__date {
+                // justify-self: flex-end;
+            }
+        }
+    }
+    .videoBlock__title {
+        font-size: 16px;
+        font-weight: 300;
+        margin-bottom: 10px;
+    }
+    
+}

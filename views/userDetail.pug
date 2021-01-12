@@ -1,0 +1,24 @@
+extends layouts/main
+include mixins/videoBlockUser
+
+block content
+    .user-profile
+        .user-profile__header 
+            img.u-avatar(src=`/${user.avatarUrl}`)
+            h4.profile__username=user.name
+        if (loggedUser && loggedUser.id === user.id)
+            .user-profile__btns 
+                a(href=`${routes.users}${routes.editProfile}`) 
+                    button Edit Profile
+                a(href=`${routes.users}${routes.changePassword}`) 
+                    button Change Password
+    .user-videos
+        each item in user.myVideos.reverse()
+            +videoBlockUser({
+                id: item.id,
+                fileUrl: item.fileUrl,
+                thumbnailUrl: item.thumbnailUrl,
+                title: item.title,
+                views: item.views,
+                createdAt: item.createdAt
+            })

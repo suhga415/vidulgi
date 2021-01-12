@@ -1,0 +1,35 @@
+.videoBlock {
+    height: 270px;
+    .videoBlock__thumbnail {
+        object-fit: cover;
+        width: 100%;
+        height: 180px;
+        // max-width: 100%;
+        margin-bottom: 10px;
+        border-radius: 35px;
+    }
+    .videoBlock__info-wrapper {
+        display: grid;
+        grid-template-columns: 15% 85%;
+        .videoBlock__column:first-child{
+            display: flex;
+            justify-content: center;
+        }
+        .videoBlock__column:nth-child(2){
+            padding-left: 5px;
+        }
+        .videoBlock__row {
+            display: flex;
+        }
+    }
+    .videoBlock__title {
+        font-size: 16px;
+        font-weight: 300;
+        margin-bottom: 5px;
+    }
+    .videoBlock__creator {
+        color: $red;
+        margin-bottom: 2px;
+    }
+    
+}
