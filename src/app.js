@@ -1,3 +1,4 @@
+import path from "path";
 import express from "express";
 import morgan from "morgan";
 import helmet from "helmet";
@@ -24,8 +25,9 @@ const CookieStore = MongoStore(session)
 // Midlewares ----------------------------------------------
 app.use(helmet());
 app.set("view engine", "pug");
-app.use("/uploads", express.static("uploads"));
-app.use("/static", express.static("static"));
+// app.use("/uploads", express.static("uploads"));
+app.set("views", path.join(__dirname, "views"));
+app.use("/static", express.static(path.join(__dirname, "static")));
 // When somebody goes to a "/uploads", 
 //give him using express static, which is a built-in middleware to give files from a directory "uploads".
 // it doesn't look for controllers or views. it will just look for a file. 
