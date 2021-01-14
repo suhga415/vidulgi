@@ -2,12 +2,12 @@ mixin videoBlock(video = {})
     .videoBlock
         a.videoBlock__a(href=routes.videoDetail(video.id))
             if (video.thumbnailUrl)
-                img.videoBlock__thumbnail(src=`/${video.thumbnailUrl}`)
+                img.videoBlock__thumbnail(src=`${video.thumbnailUrl}`)
             else
-                video.videoBlock__thumbnail(src=`/${video.fileUrl}`)
+                video.videoBlock__thumbnail(src=`${video.fileUrl}`)
             .videoBlock__info-wrapper
                 .videoBlock__column
-                    img.u-avatar__small(src=`/${video.avatarUrl}`)
+                    img.u-avatar__small(src=`${video.avatarUrl}`)
                 .videoBlock__column
                     .videoBlock__row
                         if (video.title.length > 70)

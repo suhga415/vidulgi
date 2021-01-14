@@ -3,6 +3,7 @@ import routes from "../routes"; // don't need { }, since route has been 'export 
 import Video from "../models/Video";
 import User from "../models/User";
 import Comment from "../models/Comment";
+import { s3 } from "../localsMiddleware";
 
 export const home = async (req, res) => {
     try {
@@ -12,7 +13,6 @@ export const home = async (req, res) => {
         console.log(error);
         res.render("home", { pageTitle: "Home", videos: [] });
     }
-    // res.send("Home from controller...");
 };
 
 export const search = async (req, res) => {
@@ -44,11 +44,11 @@ export const postUpload = async (req, res) => {
     const {
         body: { title, description }
     } = req;
-    console.log(req.files);
-    const videoFilePath = req.files["videoFile"][0].path;
+    // console.log(req.files);
+    const videoFilePath = req.files["videoFile"][0].location;
     let thumbnailFilePath;
     if(req.files["thumbnailFile"]) {
-        thumbnailFilePath = req.files["thumbnailFile"][0].path;
+        thumbnailFilePath = req.files["thumbnailFile"][0].location;
     }
     try {
         const newVideo = await Video.create({
@@ -115,6 +115,10 @@ export const deleteVideo = async (req, res) => {
     } = req;
     try {
         const video = await Video.findById(id);
+        const urlVideo = video.fileUrl.split('/'); // fileUrl segments that are split by '/'
+        const delFileName = urlVideo[urlVideo.length - 1]; // file name saved in s3 bucket
+        let urlThumbnail;
+        let delThumbnailName;
         if ((req.user.id).toString() === (video.creator).toString()) {
             // Remove from the user's myVideo list
             const user = await User.findById(req.user.id);
@@ -127,8 +131,26 @@ export const deleteVideo = async (req, res) => {
                 await Comment.deleteOne({_id: cId.toString()});
             });
             await Video.findOneAndRemove({ _id: id })
-            // TODO: Should delete the one saved in folder - uploads/videos
-            //      --> how...?
+            // Delete the video saved in folder in /videos
+            s3.deleteObject({
+                Bucket: "vidulgi/videos",
+                Key: delFileName
+            }, function(err, data) {
+                if (err) 
+                    console.log("Failed to delete video in s3: " + err);
+            });
+            // Delete thumbnail of that video, if there is in /avatars
+            if (video.thumbnailUrl) {
+                urlThumbnail = video.thumbnailUrl.split('/');
+                delThumbnailName = urlThumbnail[urlThumbnail.length - 1];
+                s3.deleteObject({
+                    Bucket: "vidulgi/videos",
+                    Key: delThumbnailName
+                }, function(err, data) {
+                    if (err) 
+                        console.log("Failed to delete thumbnail in s3" + err);
+                });
+            }
         } else {
             throw Error();
         }            
@@ -166,8 +188,7 @@ export const postRegisterComment = async(req, res) => {
         });
         await video.comments.push(newComment._id);
         video.save();
-        // newComment._id 를 res에 담아서 줄 수 있나 ???
-        res.send(newComment._id);
+        res.send(newComment._id); // put newComment._id in res
         // res.status(200);
     } catch(err) {
         console.log(err);

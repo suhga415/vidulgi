@@ -2,9 +2,9 @@ mixin videoBlockUser(video = {})
     .videoBlockUser
         a.videoBlock__a(href=routes.videoDetail(video.id))
             if (video.thumbnailUrl)
-                img.videoBlockUser__thumbnail(src=`/${video.thumbnailUrl}`)
+                img.videoBlockUser__thumbnail(src=`${video.thumbnailUrl}`)
             else
-                video.videoBlockUser__thumbnail(src=`/${video.fileUrl}`)
+                video.videoBlockUser__thumbnail(src=`${video.fileUrl}`)
             .videoBlockUser__info-wrapper
                 .videoBlock__row
                     h4.videoBlock__title=video.title

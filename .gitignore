@@ -80,3 +80,4 @@ typings/
 .fusebox/
 
 package-lock.json
+.eslintrc.js

@@ -3,7 +3,8 @@ import dotenv from "dotenv";
 dotenv.config(); // This function will automatically try to call .env file.
 
 mongoose.connect(
-    process.env.MONGO_URL,
+    `mongodb+srv://${process.env.MONGODB_ATLAS_USERNAME}:${process.env.MONGODB_ATLAS_PASSWORD}@cluster0.rwr32.mongodb.net/vidulgi`,
+    //process.env.MONGO_URL,
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,

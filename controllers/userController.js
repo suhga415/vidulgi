@@ -20,7 +20,7 @@ export const postJoin = async (req, res, next) => {
             const user = await User({
                 name,
                 email,
-                avatarUrl: "uploads/avatars/anonymous-user-300x296.png"
+                avatarUrl: "https://vidulgi.s3.ap-northeast-2.amazonaws.com/avatars/anonymous-user-300x296.png"
             });
             await User.register(user, password);
             next();
@@ -182,7 +182,7 @@ export const postEditProfile = async (req, res) => {
     } = req;
     try {
         await User.findByIdAndUpdate({_id: req.user._id}, 
-            {name, email, avatarUrl: file ? file.path : req.user.avatarUrl});
+            {name, email, avatarUrl: file ? file.location : req.user.avatarUrl});
         res.redirect(routes.me);
     } catch(err) {
         console.log(err);

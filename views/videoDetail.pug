@@ -20,7 +20,7 @@ block content
             span.video__uploaded-date #{moment(video.createdAt).format('YYYY. MM. DD.')}
             hr
             .video__creator
-                img.u-avatar__small(src=`/${video.creator.avatarUrl}`)
+                img.u-avatar__small(src=`${video.creator.avatarUrl}`)
                 a(href=routes.userDetail(video.creator._id))=video.creator.name
             p.video__description=video.description
             hr
@@ -33,7 +33,7 @@ block content
                 if loggedUser
                     form.comments-form#jsAddComment
                         //- This form doesn't have: (action="routes sometvhing", method="post")
-                        img.u-avatar__medium#jsUserAvatarUrl(src=`/${loggedUser.avatarUrl}`)
+                        img.u-avatar__medium#jsUserAvatarUrl(src=`${loggedUser.avatarUrl}`)
                         //- span.span__invisible#jsUserAvatarUrl=`${loggedUser.avatarUrl}`
                         input.comments-form__input#jsComment(type="text", placeholder="Add a comment", name="comment", autocomplete="off")
                         input.comments-form__submit(type="submit", value="Submit")
@@ -44,7 +44,7 @@ block content
                 each item in video.comments.reverse()
                     li
                         .speech-bubble
-                            img.u-avatar__small(src=`/${item.creatorAvatarUrl}`)
+                            img.u-avatar__small(src=`${item.creatorAvatarUrl}`)
                             .speech-bubble__column
                                 .speech-bubble__row
                                     a(href=routes.userDetail(item.creatorId))=item.creator
