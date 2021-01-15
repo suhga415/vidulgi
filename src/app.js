@@ -8,6 +8,7 @@ import passport from "passport";
 import mongoose from "mongoose";
 import session from "express-session";
 import MongoStore from "connect-mongo";
+import flash from "express-flash";
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
 import globalRouter from "./routers/globalRouter";
@@ -26,23 +27,23 @@ const CookieStore = MongoStore(session)
 app.use(helmet());
 app.set("view engine", "pug");
 // app.use("/uploads", express.static("uploads"));
-app.set("views", path.join(__dirname, "views"));
-app.use("/static", express.static(path.join(__dirname, "static")));
 // When somebody goes to a "/uploads", 
 //give him using express static, which is a built-in middleware to give files from a directory "uploads".
 // it doesn't look for controllers or views. it will just look for a file. 
+app.set("views", path.join(__dirname, "views"));
+app.use("/static", express.static(path.join(__dirname, "static")));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("dev"));
-app.use(
-    session({
+app.use(session({
         secret: process.env.COOKIE_SECRET,
         resave: false,
         saveUninitialized: false,
         store: new CookieStore({ mongooseConnection: mongoose.connection })
     })
 );
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
