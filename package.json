@@ -50,9 +50,10 @@
     "copyAll": "cp -r src/static build && cp -r src/views build",
     "build:assets": "cd src && WEBPACK_ENV=production webpack && npm run copyAll",
     "build:server": "babel src --out-dir build --ignore 'src/static','src/assets','src/webpack.config.js'",
-    "build": "npm run build:assets && npm run build:server",
+    "build": "npm run build:server && npm run build:assets",
     "prebuild": "rm -rf build",
-    "start": "node build/init.js",
+    "start": "PRODUCTION=true node build/init.js",
+    "prestart": "npm run build",
     "tunnel": "lt --port 4000"
   },
   "devDependencies": {
